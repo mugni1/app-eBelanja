@@ -5,10 +5,22 @@ import Brand from './Brand.vue'
 import BurgerMenu from './BurgerMenu.vue'
 import NavLinkLarge from './NavLinkLarge.vue'
 import NavLinkSmall from './NavLinkSmall.vue'
+import SearchMenu from './SearchMenu.vue'
+import SearchSmall from './SearchSmall.vue'
 
-const active = ref(false)
-const handleChangeActive = (value: boolean) => {
-  active.value = value
+const burgerActive = ref(false)
+const searchActive = ref(false)
+const handleChangeBurgerActive = (value: boolean) => {
+  burgerActive.value = value
+  if (burgerActive.value) {
+    searchActive.value = false
+  }
+}
+const handleChangeSearchActive = (value: boolean) => {
+  searchActive.value = value
+  if (searchActive.value) {
+    burgerActive.value = false
+  }
 }
 </script>
 
@@ -19,9 +31,11 @@ const handleChangeActive = (value: boolean) => {
       <NavLinkLarge />
       <div class="col-span-6 md:col-span-2 flex justify-end gap-2">
         <Thema />
-        <BurgerMenu @change-active="handleChangeActive" :active="active" />
+        <SearchMenu @change-active="handleChangeSearchActive" :active="searchActive" />
+        <BurgerMenu @change-active="handleChangeBurgerActive" :active="burgerActive" />
       </div>
     </nav>
   </header>
-  <NavLinkSmall :active="active" @change-active="handleChangeActive" />
+  <NavLinkSmall :active="burgerActive" @change-active="handleChangeBurgerActive" />
+  <SearchSmall :active="searchActive" @change-active="handleChangeSearchActive" />
 </template>

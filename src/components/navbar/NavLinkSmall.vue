@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
-import { RouterLink, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { data } from './data'
 import Cookies from 'js-cookie'
 
