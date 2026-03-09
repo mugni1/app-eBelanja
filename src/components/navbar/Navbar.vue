@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Thema from './Thema.vue'
 import Brand from './Brand.vue'
 import BtnBurger from './BtnBurger.vue'
 import NavLinkLarge from './NavLinkLarge.vue'
@@ -9,6 +8,7 @@ import BtnSearch from './BtnSearch.vue'
 import SearchSmall from './SearchSmall.vue'
 import BtnThema from './BtnThema.vue'
 import ThemaSmall from './ThemaSmall.vue'
+import Thema from './Thema.vue'
 
 const burgerActive = ref(false)
 const searchActive = ref(false)
@@ -42,6 +42,7 @@ const handleChangeThemaActive = (value: boolean) => {
       <Brand />
       <NavLinkLarge />
       <div class="col-span-6 md:col-span-2 flex justify-end gap-2">
+        <Thema />
         <BtnThema @change-active="handleChangeThemaActive" :active="themaActive" />
         <BtnSearch @change-active="handleChangeSearchActive" :active="searchActive" />
         <BtnBurger @change-active="handleChangeBurgerActive" :active="burgerActive" />

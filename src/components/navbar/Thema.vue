@@ -34,26 +34,22 @@ const themes = [
 </script>
 
 <template>
-  <div class="dropdown dropdown-end mx-0">
+  <div class="dropdown dropdown-end mx-0 hidden lg:block">
     <button class="btn btn-sm btn-square" aria-label="Change Theme">
       <div class="group-hover:border-base-content/20 grid grid-cols-2 gap-0.5 rounded-md p-1">
-        <div class="bg-base-content size-1.5 rounded-full"></div>
-        <div class="bg-primary size-1.5 rounded-full"></div>
-        <div class="bg-secondary size-1.5 rounded-full"></div>
-        <div class="bg-accent size-1.5 rounded-full"></div>
+        <div class="bg-base-content size-2 rounded-full"></div>
+        <div class="bg-primary size-2 rounded-full"></div>
+        <div class="bg-secondary size-2 rounded-full"></div>
+        <div class="bg-accent size-2 rounded-full"></div>
       </div>
     </button>
 
-    <div
-      tabindex="0"
-      class="dropdown-content bg-base-200 rounded-box mt-5 max-h-[70vh] w-56 overflow-y-auto shadow-2xl"
-    >
+    <div class="dropdown-content bg-base-200 rounded-box mt-2 max-h-[70vh] w-56 overflow-y-auto shadow-xl">
       <ul
-        class="menu w-full [&_li>*:hover]:bg-transparent [&_li>*:active]:bg-transparent [&_li>*:focus]:bg-transparent"
+        class="menu w-full [&_li>*:hover]:bg-transparent [&_li>*:active]:bg-transparent [&_li>*:focus]:bg-transparent space-y-2 px-4"
       >
-        <li class="menu-title text-xs">Tema</li>
         <li v-for="item in themes" :key="theme">
-          <label class="flex items-center gap-3 px-2">
+          <label class="flex items-center gap-4 p-0">
             <div :data-theme="item" class="bg-base-100 grid grid-cols-2 gap-0.5 rounded-md p-1 shadow">
               <div class="bg-base-content size-2 rounded-full"></div>
               <div class="bg-primary size-2 rounded-full"></div>
