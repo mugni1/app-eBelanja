@@ -52,7 +52,7 @@ const handleRefetch = () => {
         <img
           :src="item.image_url"
           alt="image"
-          class="card bg-base-300 border border-base-300 aspect-square w-full h-full object-cover origin-center"
+          class="card bg-base-200 border border-base-300 aspect-square w-full h-full object-cover origin-center"
         />
       </RouterLink>
     </div>
