@@ -3,6 +3,8 @@ import { motion } from 'motion-v'
 import { useRouter } from 'vue-router'
 import { data } from './data'
 import Cookies from 'js-cookie'
+import { LogInIcon, LogOutIcon } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
 const props = defineProps<{
   active: boolean
@@ -23,6 +25,11 @@ const handleGo = (to: string) => {
   router.push(to)
   handleChange()
 }
+const handleLogout = () => {
+  Cookies.remove('token')
+  toast.success('Berhasil keluar', { action: { label: 'Tutup' } })
+  router.push('/login')
+}
 </script>
 
 <template>
@@ -37,13 +44,13 @@ const handleGo = (to: string) => {
       :initial="{ opacity: 0, y: 200 }"
       :animate="{ opacity: active ? 1 : 0, y: active ? 0 : 200 }"
       :transition="{ duration: 0.2 }"
-      class="container card bg-base-100 mt-20 text-accent border border-base-300 space-y-4 pt-4 px-4"
+      class="container card bg-base-100 mt-20 border border-base-300 space-y-2 p-4"
     >
       <button
         v-for="item in data"
         v-show="!item.requireAuth && item.name != 'login'"
         @click="handleGo(item.link)"
-        class="btn btn-ghost btn-primary"
+        :class="['btn btn-ghost btn-sm', $route.path == item.link && 'btn-active btn-primary ']"
       >
         <component :is="item.icon" class="size-4" /> {{ item.title }}
       </button>
@@ -51,17 +58,15 @@ const handleGo = (to: string) => {
         v-for="item in data"
         v-show="item.requireAuth && token"
         @click="handleGo(item.link)"
-        class="btn btn-ghost btn-primary"
+        :class="['btn btn-ghost btn-sm', $route.path == item.link && 'btn-active btn-primary ']"
       >
         <component :is="item.icon" class="size-4" /> {{ item.title }}
       </button>
-      <button
-        v-for="item in data"
-        v-show="!item.requireAuth && item.name == 'login' && !token"
-        @click="handleGo(item.link)"
-        class="btn btn-ghost btn-primary"
-      >
-        <component :is="item.icon" class="size-4" /> {{ item.title }}
+      <RouterLink v-show="!token" :to="'/login'" class="btn btn-outline btn-primary btn-sm mt-2">
+        <log-in-icon class="size-3.5" /> Masuk
+      </RouterLink>
+      <button v-show="token" @click="handleLogout" class="btn btn-outline btn-primary btn-sm mt-2">
+        <log-out-icon class="size-3.5" /> Keluar
       </button>
     </motion.div>
   </section>
