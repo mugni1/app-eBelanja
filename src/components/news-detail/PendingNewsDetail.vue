@@ -19,13 +19,25 @@ import Content from '../content/Content.vue'
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
       </div>
       <div class="space-y-1 text-sm lg:text-base">
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
       </div>
       <div class="space-y-1 text-sm lg:text-base">
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
+        <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
         <p class="skeleton w-full text-transparent">Lorem ipsum dolor</p>
