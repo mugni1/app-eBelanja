@@ -21,6 +21,7 @@ import type {
 import type { Params } from '@/types/global.type'
 import type { GetCategoriesResponse, GetCategoryDetailResponse } from '@/types/category'
 import type { GetItemResponse } from '@/types/item.type'
+import type { GetNewsResponse } from '@/types/news.type'
 
 export const createPaymentQrisPwService = async (
   payload: CreateOrderPayload,
@@ -28,22 +29,23 @@ export const createPaymentQrisPwService = async (
   return httpClient.post(ENDPOINT.ORDER, payload)
 }
 
+// auth
 export const getUserDetailService = async (): Promise<AxiosResponse<GetUserDetailResponse>> => {
   return httpClient.get(ENDPOINT.ME)
 }
-
 export const loginService = async (payload: LoginPayload): Promise<AxiosResponse<LoginResponse>> => {
   return httpClient.post(ENDPOINT.LOGIN, payload)
 }
-
 export const registerService = async (payload: RegisterPayload): Promise<AxiosResponse<RegisterResponse>> => {
   return httpClient.post(ENDPOINT.REGISTER, payload)
 }
 
+// items
 export const getItems = async (params?: Params): Promise<AxiosResponse<GetItemResponse>> => {
   return httpClient.get(ENDPOINT.ITEM, { params })
 }
 
+// order
 export const getOrderDetail = async (params: GetOrderDetailParams): Promise<AxiosResponse<GetOrderDetailResponse>> => {
   return httpClient.get(`${ENDPOINT.ORDER}/${params.id}`)
 }
@@ -52,16 +54,21 @@ export const updateOrderDetail = async (
 ): Promise<AxiosResponse<UpdateOderDetailResponse>> => {
   return httpClient.put(`${ENDPOINT.ORDER}/${params.id}`)
 }
-
 export const getOrderByUserLoginService = async (
   params?: GetOrderByUserLoginParams,
 ): Promise<AxiosResponse<GetOrderByUserLoginResponse>> => {
   return httpClient.get(ENDPOINT.ORDER, { params })
 }
 
+// categories
 export const getCategoriesService = async (params?: Params): Promise<AxiosResponse<GetCategoriesResponse>> => {
   return httpClient.get(ENDPOINT.CATEGORY, { params })
 }
 export const getCategoryDetailService = async (id: string): Promise<AxiosResponse<GetCategoryDetailResponse>> => {
   return httpClient.get(ENDPOINT.CATEGORY + '/' + id)
+}
+
+// news
+export const getNewsService = async (params?: Params): Promise<AxiosResponse<GetNewsResponse>> => {
+  return httpClient.get(`${ENDPOINT.NEWS}`, { params })
 }

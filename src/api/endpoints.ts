@@ -5,4 +5,5 @@ export const ENDPOINT = {
   ME: `/auth/me`,
   ITEM: `/item`,
   CATEGORY: `/category`,
+  NEWS: `/news`,
 }
