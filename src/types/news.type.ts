@@ -18,3 +18,11 @@ export interface GetNewsResponse {
   meta: Meta | null
   errors: null
 }
+
+export interface GetNewsDetailResponse {
+  status: HttpStatusCode
+  message: string
+  data: News | null
+  meta: Meta | null
+  errors: null
+}
