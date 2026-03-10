@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import type { Category } from '@/types/category'
 import type { HttpStatusCode } from 'axios'
-import { InfoIcon, Loader } from 'lucide-vue-next'
+import { InfoIcon, Loader, TriangleAlertIcon } from 'lucide-vue-next'
 import { RouterLink } from 'vue-router'
 
 const props = defineProps<{
@@ -17,6 +17,8 @@ const props = defineProps<{
 const emits = defineEmits<{
   (e: 'refetch'): void
 }>()
+
+// state
 const isError = computed(() => !props.isPending && props.status !== 200)
 const hasData = computed(() => Array.isArray(props.data) && props.data.length > 0)
 const isEmpty = computed(() => !props.isPending && !isError.value && !hasData.value)
@@ -39,8 +41,8 @@ const handleRefetch = () => {
     ></div>
   </div>
   <div v-else-if="isError">
-    <div class="w-full card flex flex-col gap-2 justify-center items-center border border-error py-10">
-      <p class="flex items-center gap-2 text-error capitalize"><InfoIcon class="size-5" /> {{ message }}</p>
+    <div class="w-full card flex flex-col gap-2 justify-center border border-base-300 items-center bg-base-200 py-10">
+      <p class="flex items-center gap-2 text-error capitalize"><TriangleAlertIcon class="size-5" /> {{ message }}</p>
       <button class="btn btn-sm md:btn-md btn-success" @click="handleRefetch">
         <Loader :class="['size-4 md:size-5', isRefetching && 'animate-spin']" /> Coba Lagi
       </button>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import type { Category } from '@/types/category'
+import type { Params } from '@/types/global.type'
 import Blog from '@/components/blog/Blog.vue'
 import Carousel from '@/components/carousel/Carousel.vue'
 import Content from '@/components/content/Content.vue'
 import ListItem from '@/components/home/ListItem.vue'
 import { useGetCategories } from '@/hooks/useGetCategories'
 import { onMounted, ref, watch } from 'vue'
-import type { Category } from '@/types/category'
-import type { Params } from '@/types/global.type'
 import IconSmartPhone from '@/icons/IconSmartPhone.vue'
 import IconGamepad from '@/icons/IconGamepad.vue'
 
@@ -20,7 +20,6 @@ const games = ref<Category[] | undefined>()
 watch(
   () => data.value,
   (newValue) => {
-    console.log(newValue?.data)
     if (newValue && newValue.data) {
       games.value = newValue.data.filter((item) => item.type == 'games')
       simCard.value = newValue.data.filter((item) => item.type == 'credit')
