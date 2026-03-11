@@ -30,7 +30,7 @@ const handleRefetch = () => {
 </script>
 
 <template>
-  <h1 class="font-bold text-base lg:text-xl flex items-center gap-2 mb-3">
+  <h1 class="font-bold text-base lg:text-xl flex items-center gap-2 mb-3 text-primary">
     <component :is="icon" class="size-5 lg:size-6" />
     {{ title }}
   </h1>

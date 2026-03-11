@@ -18,9 +18,9 @@ const { data, isPending, isRefetching, refetch } = useGetNews(params)
 </script>
 
 <template>
-  <h1 class="font-bold text-base lg:text-xl flex items-center gap-2 mb-3">
+  <h1 class="font-bold text-base lg:text-xl flex items-center gap-2 mb-3 text-primary">
     <IconNewspapper class="size-5 lg:size-6" />
-    BERITA & BLOG
+    BLOG & BERITA TERKINI
   </h1>
   <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
     <div v-for="item in data?.data" class="card overflow-hidden border border-base-300 bg-base-200 shadow-md">
@@ -30,7 +30,7 @@ const { data, isPending, isRefetching, refetch } = useGetNews(params)
           <h1 class="font-medium text-sm md:text-base lg:text-lg line-clamp-2">
             {{ item.title }}
           </h1>
-          <p class="text-base-content/50 text-xs md:text-sm px-0 line-clamp-3">{{ item.summary }}</p>
+          <p class="text-base-content/50 text-xs md:text-sm px-0 line-clamp-4">{{ item.summary }}</p>
           <div class="flex justify-between">
             <span class="text-xs lg:text-sm text-base-content/80">{{
               new Date(item.created_at).toLocaleString('id-ID', {

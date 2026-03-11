@@ -11,53 +11,70 @@ import IconSmartPhone from '@/icons/IconSmartPhone.vue'
 import IconGamepad from '@/icons/IconGamepad.vue'
 
 // state
-const params: Params = { limit: '2000' }
-const { data, refetch, isPending, isRefetching } = useGetCategories(params)
-const simCard = ref<Category[] | undefined>()
+const creditParams: Params = { limit: '12', type: 'credit' }
+const gamesParams: Params = { limit: '12', type: 'games' }
+const {
+  data: dataCredit,
+  refetch: refetchCredit,
+  isPending: isPendingCredit,
+  isRefetching: isRefetchingCredit,
+} = useGetCategories(creditParams)
+const {
+  data: dataGames,
+  refetch: refetchGames,
+  isPending: isPendingGames,
+  isRefetching: isRefetchingGames,
+} = useGetCategories(gamesParams)
+const credit = ref<Category[] | undefined>()
 const games = ref<Category[] | undefined>()
 
 // watcher
 watch(
-  () => data.value,
+  () => dataCredit.value,
   (newValue) => {
-    if (newValue && newValue.data) {
-      games.value = newValue.data.filter((item) => item.type == 'games')
-      simCard.value = newValue.data.filter((item) => item.type == 'credit')
-    }
+    credit.value = newValue?.data || []
+  },
+)
+watch(
+  () => dataGames.value,
+  (newValue) => {
+    games.value = newValue?.data || []
   },
 )
 
 // onMounted
 onMounted(() => {
-  if (data.value && data.value.data) {
-    games.value = data.value.data.filter((item) => item.type == 'games')
-    simCard.value = data.value.data.filter((item) => item.type == 'credit')
+  if (dataCredit.value && dataCredit.value.data) {
+    credit.value = dataCredit.value.data
+  }
+  if (dataGames.value && dataGames.value.data) {
+    games.value = dataGames.value.data
   }
 })
 </script>
 
 <template>
   <Content class="space-y-8">
-    <Carousel />
+    <Ca rousel />
     <ListItem
       title="TOPUP PULSA & KUOTA"
       :icon="IconSmartPhone"
-      @refetch="refetch"
-      :data="simCard"
-      :is-pending="isPending"
-      :is-refetching="isRefetching"
-      :status="data?.status || 500"
-      :message="data?.message || 'Internal server error'"
+      @refetch="refetchCredit"
+      :data="credit"
+      :is-pending="isPendingCredit"
+      :is-refetching="isRefetchingCredit"
+      :status="dataCredit?.status || 500"
+      :message="dataCredit?.message || 'Internal server error'"
     />
     <ListItem
       title="TOPUP GAMES"
       :icon="IconGamepad"
-      @refetch="refetch"
+      @refetch="refetchGames"
       :data="games"
-      :is-pending="isPending"
-      :is-refetching="isRefetching"
-      :status="data?.status || 500"
-      :message="data?.message || 'Internal server error'"
+      :is-pending="isPendingGames"
+      :is-refetching="isRefetchingGames"
+      :status="dataGames?.status || 500"
+      :message="dataGames?.message || 'Internal server error'"
     />
     <Blog />
   </Content>

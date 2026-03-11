@@ -4,4 +4,5 @@ export interface Params {
   search?: string
   page?: string
   limit?: string
+  type?: string
 }
