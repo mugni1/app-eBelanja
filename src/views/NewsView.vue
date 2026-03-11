@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import type { Params } from '@/types/global.type'
+import { computed, ref, type Ref } from 'vue'
 import { useGetNews } from '@/hooks/useGetNews'
+import PaginationNews from '@/components/news/PaginationNews.vue'
+import Content from '@/components/content/Content.vue'
 import IconNewspapper from '@/icons/IconNewspapper.vue'
 import PendingNews from '@/components/news/PendingNews.vue'
 import ListNews from '@/components/news/ListNews.vue'
-import { computed, ref, type Ref } from 'vue'
-import type { Params } from '@/types/global.type'
-import PaginationNews from '@/components/news/PaginationNews.vue'
 import ErrorCard from '@/components/global/ErrorCard.vue'
 import EmptyCard from '@/components/global/EmptyCard.vue'
+import Title from '@/components/title/title.vue'
 
 // state
 const page = ref('1')
@@ -30,11 +31,8 @@ const handleChangePage = (v: number) => {
 </script>
 
 <template>
-  <Content>
-    <h1 class="font-bold text-base lg:text-lg flex items-center gap-2 mb-3 text-primary">
-      <IconNewspapper class="size-5 lg:size-6" />
-      BLOG & BERITA TERKINI
-    </h1>
+  <Content class="space-y-4">
+    <Title :icon="IconNewspapper" title="BLOG & BERITA TERKINI" />
     <PendingNews v-if="isPending" />
     <ListNews v-if="!isPending && data && data.data && data.data.length > 0 && data.status == 200" :data="data.data" />
     <PaginationNews
