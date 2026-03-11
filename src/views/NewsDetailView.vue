@@ -13,7 +13,7 @@ const { data, isPending, isRefetching, refetch } = useGetNewsDetail(id)
 <template>
   <PendingNewsDetail v-if="isPending" />
   <Content v-if="!isPending && data && data.data && data.status == 200" :data="data.data" class="space-y-4">
-    <h1 class="card-title text-lg lg:text-3xl text-primary lg:leading-snug">{{ data?.data?.title }}</h1>
+    <h1 class="card-title text-lg md:text-2xl lg:text-4xl text-primary lg:leading-snug">{{ data?.data?.title }}</h1>
     <div class="flex justify-between">
       <span class="card-title text-xs md:text-sm">{{
         new Date(data.data.created_at).toLocaleString('id-ID', {
@@ -33,11 +33,12 @@ const { data, isPending, isRefetching, refetch } = useGetNewsDetail(id)
         :alt="data?.data?.title"
       />
     </div>
-    <div class="ql-editor max-w-full text-sm lg:text-base" v-html="data?.data?.content"></div>
+    <div class="ql-editor max-w-full" v-html="data?.data?.content"></div>
   </Content>
 </template>
 
 <style scoped>
+@import '../assets/main.css';
 p {
   margin: 14px 0;
 }
@@ -53,11 +54,11 @@ p:empty {
 
 /* ini penting */
 .ql-editor :deep(p) {
-  margin: 8px 0;
+  @apply text-sm lg:text-base mb-4;
 }
 
 .ql-editor :deep(p:empty) {
-  height: 14px;
+  @apply h-6;
 }
 
 .ql-editor :deep(strong) {
@@ -80,15 +81,20 @@ p:empty {
   border-radius: 6px;
 }
 
+.ql-editor :deep(a) {
+  color: lightseagreen;
+  text-decoration: underline;
+}
+
 .ql-editor :deep(h1) {
-  font-size: 2em;
+  @apply text-4xl lg:text-6xl font-bold;
 }
 
 .ql-editor :deep(h2) {
-  font-size: 1.5em;
+  @apply text-lg lg:text-2xl font-bold;
 }
 
 .ql-editor :deep(h3) {
-  font-size: 1.17em;
+  @apply text-base lg:text-xl font-semibold;
 }
 </style>
