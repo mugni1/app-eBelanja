@@ -62,10 +62,10 @@ const handleLogout = () => {
       >
         <component :is="item.icon" class="size-4" /> {{ item.title }}
       </button>
-      <RouterLink v-show="!token" :to="'/login'" class="btn btn-outline btn-primary btn-sm">
+      <RouterLink v-if="!token" :to="'/login'" class="btn btn-outline btn-primary btn-sm">
         <log-in-icon class="size-3.5" /> Masuk
       </RouterLink>
-      <button v-show="token" @click="handleLogout" class="btn btn-outline btn-primary btn-sm">
+      <button v-if="token" @click="handleLogout" class="btn btn-outline btn-primary btn-sm">
         <log-out-icon class="size-3.5" /> Keluar
       </button>
     </motion.div>
