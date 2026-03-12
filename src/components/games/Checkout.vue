@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { InfoIcon } from 'lucide-vue-next'
-import { data } from './data'
 import type { Item } from '@/types/item.type'
+import type { Category } from '@/types/category'
 
 // state
 const props = defineProps<{
-  item: undefined | Item
+  item?: Item
+  category?: Category
 }>()
 </script>
 
@@ -17,9 +18,9 @@ const props = defineProps<{
   </div>
   <div v-if="item" class="card-item">
     <div class="flex items-center gap-4">
-      <img :src="data.image_url" alt="image" class="w-2/12 aspect-square card" />
+      <img :src="category?.image_url || ''" alt="image" class="w-2/12 aspect-square card" />
       <div class="w-10/12 pe-4">
-        <p class="card-title text-base line-clamp-1 truncate">{{ data.title }}</p>
+        <p class="card-title text-base line-clamp-1 truncate">{{ category?.title || '' }}</p>
         <p class="card-title text-sm text-base-content/80">{{ item.title }}</p>
       </div>
     </div>

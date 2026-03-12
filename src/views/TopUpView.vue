@@ -155,7 +155,7 @@ const handleChangeItem = (val?: Item) => {
       </section>
       <section class="space-y-4">
         <CS />
-        <Checkout :item="selectedItem" />
+        <Checkout :item="selectedItem" :category="category?.data || undefined" />
         <button type="submit" class="btn btn-primary w-full" :disabled="mutatePending">
           <ShoppingBag class="size-5" v-if="!mutatePending" />
           <LoaderIcon class="size-5 animate-spin" v-if="mutatePending" />
