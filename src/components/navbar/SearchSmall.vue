@@ -56,45 +56,57 @@ watch(data, (newValue) => {
       props.active ? 'visible' : 'invisible',
     ]"
   >
-    <motion.div
-      :initial="{ opacity: 0, y: 200 }"
-      :animate="{ opacity: active ? 1 : 0, y: active ? 0 : 200 }"
-      :transition="{ duration: 0.2 }"
-      class="container mx-auto card bg-base-100 mt-20 border border-base-300 space-y-4 p-4"
-    >
-      <!-- input  -->
-      <label class="input w-full outline-none">
-        <search-icon class="size-6" />
-        <input v-model="search" type="email" placeholder="Cari Produk..." required />
-      </label>
-
-      <!-- empty  -->
-      <div
-        v-if="categories.length < 1 || search.length < 1 || isPending"
-        role="alert"
-        class="alert alert-vertical gap-2 py-4 sm:alert-horizontal"
+    <div class="mx-auto mt-20 max-w-3xl">
+      <motion.div
+        :initial="{ opacity: 0, y: 200 }"
+        :animate="{ opacity: active ? 1 : 0, y: active ? 0 : 200 }"
+        :transition="{ duration: 0.2 }"
+        class="card bg-base-100 border border-base-300 md:mx-4 p-4 space-y-4"
       >
-        <InfoIcon />
-        <div>
-          <h3 class="font-bold">Tidak ada hasil!</h3>
-          <div class="text-xs">Cari produk yang sesuai</div>
-        </div>
-      </div>
+        <!-- input -->
+        <label class="input w-full outline-none">
+          <SearchIcon class="size-6" />
+          <input v-model="search" type="text" placeholder="Cari Produk..." class="w-full" />
+        </label>
 
-      <!-- list -->
-      <div v-if="categories.length > 0 && search.length > 0 && !isPending" class="flex flex-col gap-2">
+        <!-- empty -->
         <div
-          class="grid grid-cols-8 items-center p-4 gap-4 bg-base-200 card"
-          v-for="item in categories"
-          @click="handleGo(item.id)"
+          v-if="categories.length < 1 || search.length < 1 || isPending"
+          role="alert"
+          class="alert alert-vertical gap-2 py-4"
         >
-          <img :src="item.image_url" alt="image" class="aspect-square object-cover rounded-md col-span-2" />
-          <div class="col-span-5">
-            <p class="line-clamp-1 text-base font-medium">{{ item.title }}</p>
-            <p class="line-clamp-1 text-sm text-base-content/50">{{ item.studio }}</p>
+          <InfoIcon />
+          <div>
+            <h3 class="font-bold">Tidak ada hasil!</h3>
+            <div class="text-xs">Cari produk yang sesuai</div>
           </div>
         </div>
-      </div>
-    </motion.div>
+
+        <!-- list -->
+        <div v-if="categories.length > 0 && search.length > 0 && !isPending" class="flex flex-col gap-2">
+          <div
+            v-for="item in categories"
+            :key="item.id"
+            @click="handleGo(item.id)"
+            class="grid grid-cols-8 md:grid-cols-9 items-center p-4 gap-4 bg-base-200 card cursor-pointer hover:bg-base-300 transition"
+          >
+            <img
+              :src="item.image_url"
+              alt="image"
+              class="aspect-square object-cover rounded-md col-span-2 md:col-span-1"
+            />
+
+            <div class="col-span-5">
+              <p class="line-clamp-1 text-base font-medium">
+                {{ item.title }}
+              </p>
+              <p class="line-clamp-1 text-sm text-base-content/50">
+                {{ item.studio }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
   </section>
 </template>
