@@ -2,7 +2,9 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next'
-import { data } from './data'
+import { useGetCarousel } from '@/hooks/useGetCarousel'
+import EmptyCard from '../global/EmptyCard.vue'
+import ErrorCard from '../global/ErrorCard.vue'
 
 // init
 const modules = [Navigation, Pagination, Mousewheel, Keyboard, Autoplay]
@@ -10,10 +12,28 @@ const navigation = {
   nextEl: '.swiper-button-next-custom',
   prevEl: '.swiper-button-prev-custom',
 }
+
+// hooks
+const { data, isPending, isRefetching, refetch } = useGetCarousel()
 </script>
 
 <template>
+  <div v-if="isPending">
+    <div class="w-full aspect-9/4 skeleton"></div>
+  </div>
+  <EmptyCard
+    v-if="!isPending && data && data.data && data.data.length < 1 && data.status == 200"
+    title="Tidak ada banner info."
+  />
+  <ErrorCard
+    v-if="!isPending && data && data.status != 200"
+    :message="data.message"
+    :status="data.status"
+    :is-refetching="isRefetching"
+    @refetch="refetch()"
+  />
   <Swiper
+    v-if="!isPending && data && data.data && data.data.length > 0 && data.status == 200"
     direction="horizontal"
     :navigation="navigation"
     :mousewheel="true"
@@ -27,23 +47,19 @@ const navigation = {
     loop
     class="card overflow-hidden shadow-md border border-base-300"
   >
-    <!-- SLIDE  -->
-    <SwiperSlide v-for="(image, index) in data.images" :key="index">
+    <SwiperSlide v-for="(item, index) in data?.data || []" :key="index">
       <img
         class="w-full aspect-9/4 object-cover object-center"
         loading="lazy"
         decoding="async"
         fetchpriority="low"
-        :src="image.url"
+        :src="item.image_url"
         :alt="'image' + index"
       />
     </SwiperSlide>
-
-    <!-- CHEVRON PREV -->
     <button class="swiper-button-prev-custom">
       <ChevronLeft />
     </button>
-    <!-- CHEVRON NEXT -->
     <button class="swiper-button-next-custom">
       <ChevronRight />
     </button>

@@ -6,4 +6,5 @@ export const ENDPOINT = {
   ITEM: `/item`,
   CATEGORY: `/category`,
   NEWS: `/news`,
+  CAROUSEL: `/carousel`,
 }

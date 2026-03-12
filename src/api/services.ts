@@ -22,6 +22,7 @@ import type { Params } from '@/types/global.type'
 import type { GetCategoriesResponse, GetCategoryDetailResponse } from '@/types/category'
 import type { GetItemResponse } from '@/types/item.type'
 import type { GetNewsDetailResponse, GetNewsResponse } from '@/types/news.type'
+import type { GetCarouselResponse } from '@/types/carousel.type'
 
 export const createPaymentQrisPwService = async (
   payload: CreateOrderPayload,
@@ -74,4 +75,9 @@ export const getNewsService = async (params?: Params): Promise<AxiosResponse<Get
 }
 export const getNewsDetailService = async (id: string): Promise<AxiosResponse<GetNewsDetailResponse>> => {
   return httpClient.get(`${ENDPOINT.NEWS}/${id}`)
+}
+
+// carousel
+export const getCarouselService = async (params?: Params): Promise<AxiosResponse<GetCarouselResponse>> => {
+  return httpClient.get(`${ENDPOINT.CAROUSEL}`, { params })
 }
