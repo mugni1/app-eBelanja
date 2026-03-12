@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import PendingNewsDetail from '@/components/news-detail/PendingNewsDetail.vue'
 import { useRelativeTime } from '@/composables/useRelativeTime'
 import { useGetNewsDetail } from '@/hooks/useGetNewsDetail'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import Item from '@/components/transaction/Item.vue'
 import ItemNotFound from '@/components/transaction/ItemNotFound.vue'
 import ItemSkeleton from '@/components/transaction/ItemSkeleton.vue'

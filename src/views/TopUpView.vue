@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Item } from '@/types/item.type'
 import type { CreateOrderResponse } from '@/types/order.type'
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import Checkout from '@/components/games/Checkout.vue'
 import CS from '@/components/games/CS.vue'
 import Header from '@/components/games/Header.vue'

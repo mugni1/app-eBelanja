@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import { HttpStatusCode } from 'axios'
 import { Eye, EyeOff, Loader2Icon, LockIcon, LogInIcon, MailIcon, User2Icon, XCircleIcon } from 'lucide-vue-next'
 import { reactive, ref, watch } from 'vue'

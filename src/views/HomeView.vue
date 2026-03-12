@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Category } from '@/types/category'
 import type { Params } from '@/types/global.type'
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import { useGetCategories } from '@/hooks/useGetCategories'
 import { onMounted, ref, watch } from 'vue'
 import IconSmartPhone from '@/icons/IconSmartPhone.vue'

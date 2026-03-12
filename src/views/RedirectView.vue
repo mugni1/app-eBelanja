@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import { Loader } from 'lucide-vue-next'
 import { onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

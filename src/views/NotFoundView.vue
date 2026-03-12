@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

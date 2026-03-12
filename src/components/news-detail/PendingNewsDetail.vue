@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '../content/Content.vue'
+import Content from '../global/Content.vue'
 </script>
 
 <template>

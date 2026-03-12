@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Content from '@/components/content/Content.vue'
+import Content from '@/components/global/Content.vue'
 import Cookies from 'js-cookie'
 import { useGetUserDetail } from '@/hooks/useGetUserDetail'
 import { Home, IdCardIcon, LogOut } from 'lucide-vue-next'
