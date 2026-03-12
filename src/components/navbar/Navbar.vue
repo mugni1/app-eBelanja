@@ -9,7 +9,7 @@ import SearchSmall from './SearchSmall.vue'
 import BtnThema from './BtnThema.vue'
 import ThemaSmall from './ThemaSmall.vue'
 import Thema from './Thema.vue'
-import { SearchIcon } from 'lucide-vue-next'
+import SearchLarge from './SearchLarge.vue'
 
 const burgerActive = ref(false)
 const searchActive = ref(false)
@@ -38,13 +38,10 @@ const handleChangeThemaActive = (value: boolean) => {
 </script>
 
 <template>
-  <header class="w-full border-b border-base-300 py-4 bg-base-100 sticky top-0 z-50 shadow-md">
+  <header class="w-full border-b border-base-300 py-4 bg-base-100/80 backdrop-blur-md sticky top-0 z-50 shadow-md">
     <nav class="container mx-auto px-4 grid grid-cols-12 gap-y-4">
       <Brand />
-      <label class="input input-sm w-full outline-none col-span-8 hidden lg:flex">
-        <SearchIcon class="size-4" />
-        <input type="email" placeholder="Cari Produk..." required />
-      </label>
+      <SearchLarge />
       <div class="col-span-6 lg:col-span-2 flex justify-end gap-2">
         <Thema />
         <BtnThema @change-active="handleChangeThemaActive" :active="themaActive" />

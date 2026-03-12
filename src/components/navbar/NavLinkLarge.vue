@@ -25,8 +25,8 @@ const handleLogout = () => {
         v-show="!item.requireAuth && item.name != 'login'"
         :to="item.link"
         :class="[
-          'btn btn-ghost btn-outline btn-sm',
-          $route.name?.toString().startsWith(item.name) && 'btn-active btn-primary ',
+          'btn btn-ghost btn-sm btn-primary btn-outline',
+          $route.name?.toString().startsWith(item.name) && 'btn-active',
         ]"
       >
         <component :is="item.icon" class="size-3.5" /> {{ item.title }}
@@ -36,14 +36,13 @@ const handleLogout = () => {
         v-show="item.requireAuth && token"
         :to="item.link"
         :class="[
-          'btn btn-ghost btn-outline btn-sm',
-          $route.name?.toString().startsWith(item.name) && 'btn-active btn-primary ',
+          'btn btn-ghost btn-sm btn-primary btn-outline',
+          $route.name?.toString().startsWith(item.name) && 'btn-active',
         ]"
       >
         <component :is="item.icon" class="size-3.5" /> {{ item.title }}
       </RouterLink>
     </div>
-
     <RouterLink v-show="!token" :to="'/login'" class="btn btn-outline btn-primary btn-sm">
       <LogInIcon class="size-3.5" /> Masuk
     </RouterLink>
