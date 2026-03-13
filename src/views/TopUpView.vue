@@ -29,14 +29,13 @@ const column2 = ref<string>()
 const selectedPayment = ref<string>()
 const selectedItem = ref<Item>()
 
-/* ================= FORM ================= */
+// form
 const form = computed(() => ({
   destination: column1.value ?? '',
   destination_second: column2.value ?? '',
   item_id: selectedItem.value?.id ?? '',
   payment_method: selectedPayment.value ?? '',
 }))
-
 const formError = reactive<Record<string, string | null>>({
   destination: null,
   destination_second: null,
@@ -44,7 +43,7 @@ const formError = reactive<Record<string, string | null>>({
   payment_method: null,
 })
 
-/* ================= HELPERS ================= */
+// helper
 const resetErrors = () => {
   Object.keys(formError).forEach((key) => {
     formError[key] = null
@@ -78,7 +77,7 @@ const buildPayload = () => {
   return base
 }
 
-/* ================= SUBMIT ================= */
+// submit
 const handleSubmit = async () => {
   if (!validate()) return
   if (!selectedItem.value) return
@@ -100,7 +99,7 @@ const handleSubmit = async () => {
   }
 }
 
-/* ================= EVENTS ================= */
+// methods
 const handleChangeColumn1 = (val?: string) => {
   column1.value = val
   validate()
