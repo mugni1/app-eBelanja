@@ -49,7 +49,7 @@ watch(data, (newValue) => {
       <SearchIcon class="size-4 left-3 absolute z-50" />
       <input
         class="input input-sm ps-10 w-full outline-none focus:border-primary bg-base-100"
-        type="email"
+        type="text"
         placeholder="Cari Produk..."
         v-model="search"
         required
@@ -78,7 +78,7 @@ watch(data, (newValue) => {
         <div
           v-for="item in categories"
           :key="item.id"
-          @click="handleGo(item.id)"
+          @mousedown="handleGo(item.id)"
           class="grid grid-cols-9 items-center p-4 gap-4 bg-base-200 card cursor-pointer hover:bg-base-300 transition"
         >
           <img :src="item.image_url" alt="image" class="aspect-square object-cover rounded-md col-span-1" />

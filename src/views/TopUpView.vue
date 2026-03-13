@@ -17,12 +17,12 @@ import { useGetCategoryDetail } from '@/hooks/useGetCategoryDetail'
 import { usePostPaymentQrisPw } from '@/hooks/useCreateOrder'
 import { HttpStatusCode } from 'axios'
 
-/* ================= STATE ================= */
+// state
 const router = useRouter()
 const route = useRoute()
-const slug = Array.isArray(route.params.slug) ? route.params.slug.join('') : (route.params.slug ?? '')
-const { mutateAsync, isPending: mutatePending } = usePostPaymentQrisPw()
-const { data: category, isPending, refetch, isRefetching } = useGetCategoryDetail(slug)
+const slug = computed(() => (Array.isArray(route.params.slug) ? route.params.slug.join('') : (route.params.slug ?? '')))
+const { data: category, isPending: pendingGet, refetch, isRefetching } = useGetCategoryDetail(slug)
+const { mutateAsync, isPending: pendingPost } = usePostPaymentQrisPw()
 const isSecondColumnActive = computed(() => !!category.value?.data?.column_2)
 const column1 = ref<string>()
 const column2 = ref<string>()
@@ -122,7 +122,7 @@ const handleChangeItem = (val?: Item) => {
 <template>
   <Content class="space-y-4">
     <Header
-      :is-pending="isPending"
+      :is-pending="pendingGet"
       :title="category?.data?.title || ''"
       :studio="category?.data?.studio || ''"
       :cover-url="category?.data?.cover_url || ''"
@@ -131,7 +131,7 @@ const handleChangeItem = (val?: Item) => {
     <form @submit.prevent="handleSubmit" class="grid grid-cols-1 md:col-span-2 lg:grid-cols-3 gap-4">
       <section class="space-y-4 lg:col-span-2">
         <Info
-          :is-pending="isPending"
+          :is-pending="pendingGet"
           :column_1="category?.data?.column_1 || false"
           :column_2="category?.data?.column_2 || false"
           :column_1_title="category?.data?.column_1_title || ''"
@@ -147,7 +147,7 @@ const handleChangeItem = (val?: Item) => {
           :error-message="category?.message || 'Internal server error'"
           :error="formError.item_id"
           :data="category?.data?.items || []"
-          :is-pending="isPending"
+          :is-pending="pendingGet"
           :is-refetching="isRefetching"
           :status="category?.status || 500"
         />
@@ -156,11 +156,11 @@ const handleChangeItem = (val?: Item) => {
       <section class="space-y-4">
         <CS />
         <Checkout :item="selectedItem" :category="category?.data || undefined" />
-        <button type="submit" class="btn btn-primary w-full" :disabled="mutatePending">
-          <ShoppingBag class="size-5" v-if="!mutatePending" />
-          <LoaderIcon class="size-5 animate-spin" v-if="mutatePending" />
-          <span v-if="!mutatePending">Pesan Sekarang</span>
-          <span v-if="mutatePending">Harap tunggu..</span>
+        <button type="submit" class="btn btn-primary w-full" :disabled="pendingPost">
+          <ShoppingBag class="size-5" v-if="!pendingPost" />
+          <LoaderIcon class="size-5 animate-spin" v-if="pendingPost" />
+          <span v-if="!pendingPost">Pesan Sekarang</span>
+          <span v-if="pendingPost">Harap tunggu..</span>
         </button>
       </section>
     </form>
