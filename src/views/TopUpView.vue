@@ -7,6 +7,7 @@ import CS from '@/components/topup/CS.vue'
 import Payment from '@/components/topup/Payment.vue'
 import Header from '@/components/topup/header/Header.vue'
 import Input from '@/components/topup/input/Input.vue'
+import Items from '@/components/topup/items/Items.vue'
 import { LoaderIcon, ShoppingBag } from 'lucide-vue-next'
 import { computed, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -15,7 +16,6 @@ import { toast } from 'vue-sonner'
 import { useGetCategoryDetail } from '@/hooks/useGetCategoryDetail'
 import { usePostPaymentQrisPw } from '@/hooks/useCreateOrder'
 import { HttpStatusCode } from 'axios'
-import Items from '@/components/topup/items/Items.vue'
 
 // state
 const router = useRouter()
