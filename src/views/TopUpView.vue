@@ -169,6 +169,7 @@ const handleChangeIsValid = (value: boolean) => {
       </section>
       <section class="space-y-4">
         <CustomerService />
+        <ShippingBag :item="selectedItem" :category="category?.data || undefined" />
         <DialogCheckout
           :is-pending="pendingPost"
           :is-valid="isValid"
@@ -179,7 +180,6 @@ const handleChangeIsValid = (value: boolean) => {
           @validate="handleValidate"
           @change-is-valid="handleChangeIsValid"
         />
-        <ShippingBag :item="selectedItem" :category="category?.data || undefined" />
       </section>
     </form>
   </Content>

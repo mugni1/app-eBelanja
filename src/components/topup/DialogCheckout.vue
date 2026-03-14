@@ -48,26 +48,33 @@ watch(
     <div class="modal-box">
       <h3 class="card-title text-error"><TriangleAlertIcon /> Apakah sudah sesuai?</h3>
       <p class="py-4">Pastikan semua sudah sesuai!</p>
-      <div>
-        <div class="flex justify-between">
+      <div class="text-sm space-y-2">
+        <div class="flex justify-between gap-4 truncate overflow-hidden">
           <span>Tujuan :</span>
           <div>
-            <span>{{ destination }}</span>
-            <span v-if="destinationSecond.length > 0"> ({{ destinationSecond }})</span>
+            <span class="truncate">{{ destination }}</span>
+            <span v-if="destinationSecond.length > 0" class="truncate"> ({{ destinationSecond }})</span>
           </div>
         </div>
-        <div class="flex justify-between">
-          <span>Produk :</span><span>{{ prductName }}</span>
+        <div class="flex justify-between gap-4 truncate overflow-hidden">
+          <span>Produk :</span>
+          <span class="truncate">{{ prductName }}</span>
         </div>
-        <div class="flex justify-between">
-          <span>Total Harga :</span><span>Rp {{ totalPrice.toLocaleString('id-ID') }}</span>
+        <div class="flex justify-between gap-4 truncate overflow-hidden">
+          <span>Total Harga :</span>
+          <span class="truncate">Rp {{ totalPrice.toLocaleString('id-ID') }}</span>
         </div>
       </div>
       <div class="modal-action">
         <form method="dialog" @submit="handleChangeIsValid()">
-          <button class="btn btn-error"><XCircleIcon class="size-5" /> Tutup</button>
+          <button class="btn btn-error btn-sm md:btn-md"><XCircleIcon class="size-4 md:size-5" /> Tutup</button>
         </form>
-        <button class="btn btn-primary"><CheckCircle2Icon class="size-5" />Selesai</button>
+        <button class="btn btn-primary btn-sm md:btn-md" :disabled="isPending">
+          <CheckCircle2Icon v-if="!isPending" class="size-4 md:size-5" />
+          <LoaderIcon class="size-4 md:size-5 animate-spin" v-if="isPending" />
+          <span v-if="!isPending">Selesai</span>
+          <span v-if="isPending">Tunggu..</span>
+        </button>
       </div>
     </div>
     <!-- helper -->
