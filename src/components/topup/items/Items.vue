@@ -58,7 +58,7 @@ watch(selectedItem, (newValue) => {
         <div class="card-product">
           <div class="p-4 flex flex-col md:flex-row gap-2 md:gap-4">
             <img :src="item.image_url" alt="icon" class="size-10 object-cover" />
-            <div>
+            <div class="overflow-hidden">
               <p class="stat-title text-base-content truncate">{{ item.title }}</p>
               <div class="flex gap-2">
                 <p class="text-primary text-base font-semibold truncate">Rp {{ item.price.toLocaleString('id-ID') }}</p>
