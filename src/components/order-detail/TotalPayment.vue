@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { GetOrderDetailResponse } from '@/types/order.type'
+
 const props = defineProps<{
-  pending: boolean
-  totalPrice: number
+  data: GetOrderDetailResponse
 }>()
 </script>
 
@@ -9,8 +10,7 @@ const props = defineProps<{
   <div class="bg-base-200 border border-base-300 p-4 card">
     <div class="flex justify-between w-full font-semibold text-base text-primary">
       <span>Total Pembayaran</span>
-      <span v-if="!pending">Rp {{ totalPrice.toLocaleString('id-ID') }}</span>
-      <span v-else class="h-6 w-40 skeleton"></span>
+      <span>Rp {{ data.data?.amount.toLocaleString('id-ID') ?? 0 }}</span>
     </div>
   </div>
 </template>

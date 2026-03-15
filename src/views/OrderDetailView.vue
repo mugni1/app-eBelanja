@@ -94,19 +94,18 @@ watch(data, (value) => {
       <Steps :status="data.data.status" />
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- content 1  -->
         <section class="space-y-4">
           <div class="badge badge-error font-bold">
             <AlarmClock class="size-4" />
             {{ formattedTime }}
           </div>
           <Information :data="data" />
-          <PaymentDetails
-            :pending="isPendingGetOrder"
-            :price="data?.data?.item.price || 0"
-            :total-price="data?.data?.amount || 0"
-          />
-          <TotalPayment :pending="isPendingGetOrder" :total-price="data?.data?.amount || 0" />
+          <PaymentDetails :data="data" />
+          <TotalPayment :data="data" />
         </section>
+
+        <!-- content 2  -->
         <section class="space-y-4">
           <MethodeHeader
             :pending="isPendingGetOrder"
