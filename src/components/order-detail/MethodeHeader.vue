@@ -35,9 +35,14 @@ const props = defineProps<{
             >
               Menunggu
             </span>
+            <span
+              v-if="data.data?.status == 'paid' || data.data?.status == 'success'"
+              class="badge-sm badge badge-success"
+            >
+              Berhasil
+            </span>
             <span v-if="data.data?.status == 'expired'" class="badge-sm badge badge-error">Kadaluwarsa</span>
             <span v-if="data.data?.status == 'cancelled'" class="badge-sm badge badge-error">Dibatalkan</span>
-            <span v-if="data.data?.status == 'paid'" class="badge-sm badge badge-success">Dibayar</span>
             <span v-if="data.data?.status == 'processing'" class="badge-sm badge badge-info">Diproses</span>
           </td>
         </tr>
