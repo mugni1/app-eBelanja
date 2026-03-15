@@ -33,44 +33,39 @@ const { data, isPending, isRefetching, refetch } = useGetNewsDetail(id)
         :alt="data?.data?.title"
       />
     </div>
-    <div class="ql-editor max-w-full" v-html="data?.data?.content"></div>
+    <div class="ql-editor" v-html="data?.data?.content"></div>
   </Content>
 </template>
 
 <style scoped>
 @import '../assets/main.css';
-p {
-  margin: 14px 0;
-}
-
-p:empty {
-  height: 14px;
-}
 
 .ql-editor {
-  line-height: 1.7;
-  word-break: break-word;
+  @apply px-0;
 }
 
-/* ini penting */
 .ql-editor :deep(p) {
-  @apply text-sm lg:text-base mb-4;
+  @apply text-sm lg:text-base;
 }
 
 .ql-editor :deep(p:empty) {
-  @apply h-6;
+  @apply h-4;
 }
 
-.ql-editor :deep(strong) {
+.ql-editor :deep(ul) {
+  @apply text-sm lg:text-base py-2;
+}
+
+/* .ql-editor :deep(strong) {
   font-weight: 600;
 }
 
 .ql-editor :deep(img) {
   max-width: 100%;
   height: auto;
-}
+} */
 
-.ql-editor :deep(table) {
+/* .ql-editor :deep(table) {
   display: block;
   overflow-x: auto;
 }
@@ -79,7 +74,7 @@ p:empty {
   overflow-x: auto;
   padding: 12px;
   border-radius: 6px;
-}
+} */
 
 .ql-editor :deep(a) {
   color: lightseagreen;

@@ -15,7 +15,9 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@tanstack/vue-query": "^5.92.8",
+    "@vueup/vue-quill": "^1.2.0",
     "@vueuse/core": "^14.2.0",
     "axios": "^1.13.2",
     "js-cookie": "^3.0.5",
