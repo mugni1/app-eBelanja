@@ -8,7 +8,7 @@ const props = defineProps<{
 
 <template>
   <div class="card bg-base-200 border border-base-300 p-4 grid grid-cols-12 gap-4">
-    <div class="col-span-3 aspect-square bg-white overflow-hidden card">
+    <div class="col-span-3 aspect-square bg-white overflow-hidden rounded-md">
       <img :src="data.data?.item.category.image_url ?? ''" alt="image" />
     </div>
     <div class="col-span-9 space-y-2">
