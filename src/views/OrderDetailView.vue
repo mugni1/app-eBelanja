@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AlarmClock, Home, Loader2 } from 'lucide-vue-next'
+import { AlarmClock } from 'lucide-vue-next'
 import { useRoute, useRouter } from 'vue-router'
 import { useGetOrderDetail } from '@/hooks/useGetOrderDetail'
 import { computed, ref, watch } from 'vue'
@@ -48,15 +48,15 @@ const updateOrderDetail = async () => {
   try {
     const res = await mutateAsync({ id: data.value?.data?.transaction_id || '' })
     if (res.status != 200) {
-      toast.error(res.message, { action: { label: 'Close' } })
+      toast.error(res.message)
     } else {
+      toast.success(res.message)
       queryClient.refetchQueries({
         queryKey: ['oder_detail', id],
       })
-      toast.success(res.message, { action: { label: 'Close' } })
     }
   } catch {
-    toast.error('Internal server error', { action: { label: 'Close' } })
+    toast.error('Server sedang sibuk, Coba lagi nanti.')
   }
 }
 
@@ -87,57 +87,47 @@ watch(data, (value) => {
     :is-refetching="isRefetching"
     @refetch="refetch"
   />
-  <section v-else>
-    <Header :status="data?.data?.status || ''" :pending="isPendingGetOrder" />
-    <Content>
-      <div class="space-y-8">
-        <Steps :status="data?.data?.status || ''" :pending="isPendingGetOrder" />
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <section class="space-y-4">
-            <div v-if="!isPendingGetOrder" class="badge badge-error font-bold">
-              <AlarmClock class="size-4" />
-              {{ formattedTime }}
-            </div>
-            <div v-else class="badge skeleton text-transparent">Fotmated time time time time</div>
-            <Information
-              :title="data?.data?.item.category.column_1_title || 'Pengiriman'"
-              :image_url="data?.data?.item.category.image_url || ''"
-              :provider="data?.data?.item.provider || 'axis'"
-              :pending="isPendingGetOrder"
-              :product="data?.data?.item.title"
-              :destination="data?.data?.destination"
-              :destination_second="data?.data?.destination_second"
-              :name="data?.data?.user.fullname"
-            />
-            <PaymentDetails
-              :pending="isPendingGetOrder"
-              :price="data?.data?.item.price || 0"
-              :total-price="data?.data?.amount || 0"
-            />
-            <TotalPayment :pending="isPendingGetOrder" :total-price="data?.data?.amount || 0" />
-          </section>
-          <section class="space-y-4">
-            <MethodeHeader
-              :pending="isPendingGetOrder"
-              :trx-id="data?.data?.transaction_id || ''"
-              :status="data?.data?.status || ''"
-            />
-            <QrisImage
-              :pending="isPendingGetOrder"
-              :status="data?.data?.status || ''"
-              :image-url="data?.data?.qris_url || ''"
-            />
-            <MethodeFooter
-              :id="data?.data?.id || ''"
-              :status="data?.data?.status || ''"
-              :trx_id="data?.data?.transaction_id || ''"
-              :qris_url="data?.data?.qris_url || ''"
-              :get_order_pending="isPendingGetOrder"
-              :update_order_pending="isPendingUpdateOrder"
-              @update="updateOrderDetail"
-            />
-          </section>
-        </div>
+  <section v-if="!isPendingGetOrder && data && data.data && data.status == 200">
+    <Header :status="data.data.status" />
+    <Content class="space-y-8">
+      <!-- steps  -->
+      <Steps :status="data.data.status" />
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section class="space-y-4">
+          <div class="badge badge-error font-bold">
+            <AlarmClock class="size-4" />
+            {{ formattedTime }}
+          </div>
+          <Information :data="data" />
+          <PaymentDetails
+            :pending="isPendingGetOrder"
+            :price="data?.data?.item.price || 0"
+            :total-price="data?.data?.amount || 0"
+          />
+          <TotalPayment :pending="isPendingGetOrder" :total-price="data?.data?.amount || 0" />
+        </section>
+        <section class="space-y-4">
+          <MethodeHeader
+            :pending="isPendingGetOrder"
+            :trx-id="data?.data?.transaction_id || ''"
+            :status="data?.data?.status || ''"
+          />
+          <QrisImage
+            :pending="isPendingGetOrder"
+            :status="data?.data?.status || ''"
+            :image-url="data?.data?.qris_url || ''"
+          />
+          <MethodeFooter
+            :id="data?.data?.id || ''"
+            :status="data?.data?.status || ''"
+            :trx_id="data?.data?.transaction_id || ''"
+            :qris_url="data?.data?.qris_url || ''"
+            :get_order_pending="isPendingGetOrder"
+            :update_order_pending="isPendingUpdateOrder"
+            @update="updateOrderDetail"
+          />
+        </section>
       </div>
     </Content>
   </section>

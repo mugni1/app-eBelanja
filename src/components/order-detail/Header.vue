@@ -2,15 +2,13 @@
 import IconCreditCard from '@/icons/IconCreditCard.vue'
 
 const props = defineProps<{
-  pending: boolean
   status: string
 }>()
 </script>
 
 <template>
-  <div v-if="pending" class="w-full min-h-[40vh] skeleton mb-4 rounded-none"></div>
   <section
-    v-if="!pending && status == 'pending'"
+    v-if="status == 'pending'"
     class="w-full min-h-[40vh] bg-warning mb-4 flex flex-col items-center justify-center"
   >
     <div class="container px-4 mx-auto flex flex-col items-center">
@@ -23,7 +21,7 @@ const props = defineProps<{
     </div>
   </section>
   <section
-    v-if="(!pending && status == 'waiting') || (!pending && status == 'processing')"
+    v-if="status == 'waiting' || status == 'processing'"
     class="w-full min-h-[40vh] bg-info mb-4 flex flex-col items-center justify-center"
   >
     <div class="container px-4 mx-auto flex flex-col items-center">
@@ -36,7 +34,7 @@ const props = defineProps<{
     </div>
   </section>
   <section
-    v-if="(!pending && status == 'paid') || (!pending && status == 'success')"
+    v-if="status == 'paid' || status == 'success'"
     class="w-full min-h-[40vh] bg-success mb-4 flex flex-col items-center justify-center"
   >
     <div class="container px-4 mx-auto flex flex-col items-center">
@@ -49,7 +47,7 @@ const props = defineProps<{
     </div>
   </section>
   <section
-    v-if="!pending && status == 'cancelled'"
+    v-if="status == 'cancelled'"
     class="w-full min-h-[40vh] bg-error mb-4 flex flex-col items-center justify-center"
   >
     <div class="container px-4 mx-auto flex flex-col items-center">
@@ -62,7 +60,7 @@ const props = defineProps<{
     </div>
   </section>
   <section
-    v-if="!pending && status == 'expired'"
+    v-if="status == 'expired'"
     class="w-full min-h-[40vh] bg-error mb-4 flex flex-col items-center justify-center"
   >
     <div class="container px-4 mx-auto flex flex-col items-center">
@@ -75,7 +73,7 @@ const props = defineProps<{
     </div>
   </section>
   <section
-    v-if="(!pending && status == 'failed') || (!pending && status == 'error')"
+    v-if="status == 'failed' || status == 'error'"
     class="w-full min-h-[40vh] bg-error mb-4 flex flex-col items-center justify-center"
   >
     <div class="container px-4 mx-auto flex flex-col items-center">

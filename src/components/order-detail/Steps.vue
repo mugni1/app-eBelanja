@@ -2,13 +2,12 @@
 import { CheckCircle, CreditCard, Loader, ShoppingBag, XCircle } from 'lucide-vue-next'
 
 const props = defineProps<{
-  pending: boolean
   status: string
 }>()
 </script>
 
 <template>
-  <ul v-if="!pending" class="steps w-full steps-horizontal">
+  <ul class="steps w-full steps-horizontal">
     <li class="step step-primary">
       <span class="step-icon"><ShoppingBag class="size-4" /> </span>
       <div class="hidden md:block">
@@ -59,37 +58,6 @@ const props = defineProps<{
       <div class="hidden md:block">
         <p class="font-semibold text-base">Transaksi Kadaluwarsa</p>
         <p class="text-xs">Transaksi gagal diselesaikan</p>
-      </div>
-    </li>
-  </ul>
-
-  <ul v-else class="steps w-full steps-horizontal text-transparent">
-    <li class="step">
-      <span class="step-icon skeleton"></span>
-      <div class="hidden md:flex items-center justify-center flex-col gap-1">
-        <p class="font-semibold text-base skeleton">Transaksi Transak</p>
-        <p class="text-xs skeleton">Transaksi gagal diselesaikan</p>
-      </div>
-    </li>
-    <li class="step">
-      <span class="step-icon skeleton"></span>
-      <div class="hidden md:flex items-center justify-center flex-col gap-1">
-        <p class="font-semibold text-base skeleton">Transaksi Transak</p>
-        <p class="text-xs skeleton">Transaksi gagal diselesaikan</p>
-      </div>
-    </li>
-    <li class="step">
-      <span class="step-icon skeleton"></span>
-      <div class="hidden md:flex items-center justify-center flex-col gap-1">
-        <p class="font-semibold text-base skeleton">Transaksi Transaksi</p>
-        <p class="text-xs skeleton">Transaksi gagal diselesaikannn</p>
-      </div>
-    </li>
-    <li class="step">
-      <span class="step-icon skeleton"></span>
-      <div class="hidden md:flex items-center justify-center flex-col gap-1">
-        <p class="font-semibold text-base skeleton">Transaksi Transak</p>
-        <p class="text-xs skeleton">Transaksi gagal diselesaikan</p>
       </div>
     </li>
   </ul>
