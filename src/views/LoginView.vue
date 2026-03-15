@@ -49,14 +49,14 @@ const handleSubmit = async () => {
   try {
     const result = await mutateAsync({ email: form.email, password: form.password })
     if (result.status == HttpStatusCode.Ok && result.data) {
-      toast.success(result.message, { action: { label: 'close' } })
+      toast.success(result.message)
       Cookies.set('token', result.data.token)
       router.push('/')
     } else {
-      toast.error(result.message, { action: { label: 'close' } })
+      toast.error(result.message)
     }
   } catch {
-    toast.error('Internal server error, try again later.', { action: { label: 'close' } })
+    toast.error('Terjadi kesalahan pada server.')
   }
 }
 const handleAuthGoogle = () => {
