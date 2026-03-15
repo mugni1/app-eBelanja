@@ -6,7 +6,7 @@ import Title from '@/components/global/Title.vue'
 import OrderList from '@/components/order/OrderList.vue'
 import OrderPending from '@/components/order/OrderPending.vue'
 import { useGetOrderByUserLogin } from '@/hooks/useGetOrderByUserLogin'
-import { ListEndIcon } from 'lucide-vue-next'
+import IconTransaction from '@/icons/IconTransaction.vue'
 
 // state
 const { data, isPending, refetch, isRefetching } = useGetOrderByUserLogin()
@@ -15,7 +15,7 @@ const { data, isPending, refetch, isRefetching } = useGetOrderByUserLogin()
 <template>
   <Content class="space-y-4">
     <!-- title  -->
-    <Title :icon="ListEndIcon" title="RIWAYAT TRANSAKSI" />
+    <Title :icon="IconTransaction" title="RIWAYAT TRANSAKSI" />
 
     <!-- pending  -->
     <OrderPending v-if="isPending" />
