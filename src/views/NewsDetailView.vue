@@ -82,7 +82,7 @@ const { data, isPending, isRefetching, refetch } = useGetNewsDetail(id)
 }
 
 .ql-editor :deep(h1) {
-  @apply text-4xl lg:text-6xl font-bold;
+  @apply text-2xl lg:text-4xl font-bold;
 }
 
 .ql-editor :deep(h2) {
