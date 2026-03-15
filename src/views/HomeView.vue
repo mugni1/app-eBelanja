@@ -15,9 +15,9 @@ const pageCredit = ref(1)
 const pageGames = ref(1)
 const credit = ref<Category[]>([])
 const games = ref<Category[]>([])
-const creditParams = computed<Params>(() => ({
+const creditAndQuotaParams = computed<Params>(() => ({
   limit: '12',
-  type: 'credit',
+  type: 'credit_quota',
   page: String(pageCredit.value),
 }))
 const gamesParams = computed<Params>(() => ({
@@ -28,11 +28,11 @@ const gamesParams = computed<Params>(() => ({
 
 // hooks
 const {
-  data: dataCredit,
+  data: dataCreditAndQuota,
   refetch: refetchCredit,
   isPending: isPendingCredit,
   isRefetching: isRefetchingCredit,
-} = useGetCategories(creditParams)
+} = useGetCategories(creditAndQuotaParams)
 
 const {
   data: dataGames,
@@ -51,7 +51,7 @@ const incrementPageGames = () => {
 
 // watcher
 watch(
-  () => dataCredit.value,
+  () => dataCreditAndQuota.value,
   (newValue) => {
     if (!newValue?.data) return
     credit.value.push(...newValue.data)
@@ -67,8 +67,8 @@ watch(
 
 // initial
 onMounted(() => {
-  if (dataCredit.value?.data) {
-    credit.value = dataCredit.value.data
+  if (dataCreditAndQuota.value?.data) {
+    credit.value = dataCreditAndQuota.value.data
   }
   if (dataGames.value?.data) {
     games.value = dataGames.value.data
@@ -86,11 +86,11 @@ onMounted(() => {
       title="TOPUP PULSA & KUOTA"
       :icon="IconSmartPhone"
       :data="credit"
-      :meta="dataCredit?.meta || undefined"
+      :meta="dataCreditAndQuota?.meta || undefined"
       :is-pending="isPendingCredit"
       :is-refetching="isRefetchingCredit"
-      :status="dataCredit?.status || 500"
-      :message="dataCredit?.message || 'Internal server error'"
+      :status="dataCreditAndQuota?.status || 500"
+      :message="dataCreditAndQuota?.message || 'Internal server error'"
       @increment="incrementPageCredit"
       @refetch="refetchCredit"
     />
